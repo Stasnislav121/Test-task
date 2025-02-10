@@ -6,7 +6,7 @@ class BaseApiClient:
 
     def post(self, path='/', data=None):
         url = self.base_address + path
-        response = requests.post(url=url, data=data)
+        response = requests.post(url=url, json=data)
         return response
 
     def get(self, path='/', params=None):

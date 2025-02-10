@@ -6,8 +6,10 @@ class TestItemId:
     @allure.feature('API')
     @allure.story('API: Item')
     @allure.title('[200] GET /item/:id - получение данных о товаре по существующему id')
-    def test_get_data_item_by_existing_id(self):
-        expect_item_id = '7a8fe969-2a57-468e-82c9-1982d22023c5'
+    def test_get_data_item_by_existing_id(self, add_item):
+        item = add_item
+        expect_item_data = item[1]
+        expect_item_id = item[0].json()['status'].split(' - ')[1]
 
         with allure.step(f'Выполнить запрос GET /api/1/item/{expect_item_id}'):
             client = ItemApi()
@@ -20,6 +22,14 @@ class TestItemId:
             ResponseHandler.validate_response(response, get_item_data_by_id_schema)
 
         with allure.step('Проверка параметров ответа'):
-            actual_data = response.json()[0]
-            actual_item_id = actual_data['id']
+            actual_item_data = response.json()[0]
+            actual_item_id = actual_item_data['id']
+            actual_date = actual_item_data['createdAt']
+            actual_entry_datas = ResponseHandler.check_datas_for_entry(expect_item_data, actual_item_data)
+            actual_format_date_is_valid = ResponseHandler.check_date_format(actual_date)
+
             assert expect_item_id == actual_item_id, f'Ожидалось "id": {expect_item_id}, получено {actual_item_id}'
+            assert actual_entry_datas is True, (f'Ожидалось вхождение {expect_item_data} в {actual_item_data}, '
+                                                f'получена разница {actual_entry_datas}')
+            assert actual_format_date_is_valid is True, (f'Ожидалось соответствие значения параметра "createdAt" '
+                                                         f'формату "%Y-%m-%d %H:%M:%S %z", получено {actual_date}')
