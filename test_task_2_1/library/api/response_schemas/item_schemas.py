@@ -49,3 +49,40 @@ get_item_data_by_id_schema = {
         "required": ["createdAt", "id", "name", "price", "sellerId", "statistics"]
     }
 }
+
+get_item_err_schema = {
+    "type": "object",
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "code": {
+            "type": "integer"
+        }
+    },
+    "required": ["message", "code"]
+}
+
+
+get_item_not_found_err_schema = {
+    "type": "object",
+    "properties": {
+        "result": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "messages": {
+                    "type": ["null", "array"]
+                }
+            },
+            "required": ["message"]
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": ["result", "status"]
+}
+
