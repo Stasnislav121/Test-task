@@ -5,7 +5,7 @@ import allure
 class TestItemId:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] POST /item/:id - получение данных о товаре по существующему id')
+    @allure.title('[200] GET /item/:id - получение данных о товаре по существующему id')
     def test_get_data_item_by_existing_id(self):
         expect_item_id = '7a8fe969-2a57-468e-82c9-1982d22023c5'
 
