@@ -2,7 +2,7 @@ import requests
 
 
 class BaseApiClient:
-    base_address = 'https://qa-internship.avito.com/api/1'
+    base_address = 'https://qa-internship.avito.com/api/1/'
 
     def post(self, path='/', data=None):
         url = self.base_address + path
