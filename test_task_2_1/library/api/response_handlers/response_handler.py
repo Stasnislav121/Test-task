@@ -35,6 +35,10 @@ class ResponseHandler:
         ResponseHandler.check_status_code(expect_status_code=404, actual_status_code=response.status_code)
 
     @staticmethod
+    def check_status_is_500(response):
+        ResponseHandler.check_status_code(expect_status_code=500, actual_status_code=response.status_code)
+
+    @staticmethod
     def check_datas_for_entry(expect_data: dict, actual_data: dict):
         if not expect_data.items() <= actual_data.items():
             result = {}

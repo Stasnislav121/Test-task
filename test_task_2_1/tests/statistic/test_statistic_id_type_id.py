@@ -3,17 +3,17 @@ import allure
 import pytest
 
 
-class TestItemId:
+class TestStatisticId:
     @allure.feature('API')
-    @allure.story('API: Item')
-    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре без id')
-    def test_get_item_without_id(self):
+    @allure.story('API: Statistic')
+    @allure.title('[404] GET /api/1/statistic/:id - попытка получения данных о товаре без id')
+    def test_get_statistic_item_without_id(self):
         expect_error_text = 'route /api/1/item/ not found'
         expect_item_id = ''
 
-        with allure.step(f'Выполнить запрос GET /api/1/item/'):
-            client = ItemApi()
-            response = client.get_data_item_by_id(item_id=expect_item_id)
+        with allure.step(f'Выполнить запрос GET /api/1/statistic/'):
+            client = StatisticApi()
+            response = client.get_statistic_by_id(item_id=expect_item_id)
 
         with allure.step('Проверка кода ответа'):
             ResponseHandler.check_status_is_404(response)
@@ -31,21 +31,21 @@ class TestItemId:
             assert actual_code == '404', f'Ожидался "status": "404", получено {actual_code}'
 
     @allure.feature('API')
-    @allure.story('API: Item')
-    @allure.title('[500] GET /api/1/item/:id - попытка получения данных с невалидным id')
+    @allure.story('API: Statistic')
+    @allure.title('[500] GET /api/1/statistic/:id - попытка получения данных с невалидным id')
     @pytest.mark.parametrize('item_id', [123,
                                          'йцукен',
                                          'af0447953c55417b8039c9590bf6b239',
                                          'af044795!3c55-417b-8039-c9590bf6b239',
                                          'af044795-3c55-417b-8039-c9590b-f6b239',
                                          '!@#$%^&*(){}?><~'])
-    def test_get_item_with_invalid_id(self, item_id):
+    def test_get_statistic_with_invalid_id(self, item_id):
         expect_error_text = 'internal error'
         expect_item_id = item_id
 
-        with allure.step(f'Выполнить запрос GET /api/1/item/{expect_item_id}'):
-            client = ItemApi()
-            response = client.get_data_item_by_id(item_id=expect_item_id)
+        with allure.step(f'Выполнить запрос GET/api/1/statistic/{expect_item_id}'):
+            client = StatisticApi()
+            response = client.get_statistic_by_id(item_id=expect_item_id)
 
         with allure.step('Проверка кода ответа'):
             ResponseHandler.check_status_is_500(response)
@@ -60,18 +60,18 @@ class TestItemId:
 
             assert expect_error_text == actual_error_text, (f'Ожидалось "message": {expect_error_text}, получено'
                                                             f' {actual_error_text}')
-            assert actual_code == 500, f'Ожидался "code": "400", получено {actual_code}'
+            assert actual_code == 500, f'Ожидался "code": "500", получено {actual_code}'
 
     @allure.feature('API')
-    @allure.story('API: Item')
-    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре c несуществующим id')
-    def test_get_item_nonexistent_id(self):
+    @allure.story('API: Statistic')
+    @allure.title('[404] GET /api/1/statistic/:id - попытка получения данных о товаре c несуществующим id')
+    def test_get_statistic_item_nonexistent_id(self):
         expect_item_id = 'af044795-3c55-417b-9999-c9590bf6b239'
         expect_error_text = f'item {expect_item_id} not found'
 
-        with allure.step(f'Выполнить запрос GET /api/1/item/{expect_item_id}'):
-            client = ItemApi()
-            response = client.get_data_item_by_id(item_id=expect_item_id)
+        with allure.step(f'Выполнить запрос GET /api/1/statistic/{expect_item_id}'):
+            client = StatisticApi()
+            response = client.get_statistic_by_id(item_id=expect_item_id)
 
         with allure.step('Проверка кода ответа'):
             ResponseHandler.check_status_is_404(response)
@@ -89,17 +89,18 @@ class TestItemId:
             assert actual_code == '404', f'Ожидался "status": "404", получено {actual_code}'
 
     @allure.feature('API')
-    @allure.story('API: Item')
-    @allure.title('[500] GET /api/1/item/:id - попытка получения данных о товаре c превышением граничных значений id')
+    @allure.story('API: Statistic')
+    @allure.title('[500] GET /api/1/statistic/:id - попытка получения данных о товаре c превышением '
+                  'граничных значений id')
     @pytest.mark.parametrize('item_id', ['af044795-3c55-417b-9999-c9590bf6b23',
                                          'af044795-3c55-417b-9999-c9590bf6b2391'])
-    def test_get_item_boundary_values_id(self, item_id):
+    def test_get_statistic_item_boundary_values_id(self, item_id):
         expect_item_id = item_id
         expect_error_text = 'internal error'
 
-        with allure.step(f'Выполнить запрос GET /api/1/item/{expect_item_id}'):
-            client = ItemApi()
-            response = client.get_data_item_by_id(item_id=expect_item_id)
+        with allure.step(f'Выполнить запрос GET /api/1/statistic/{expect_item_id}'):
+            client = StatisticApi()
+            response = client.get_statistic_by_id(item_id=expect_item_id)
 
         with allure.step('Проверка кода ответа'):
             ResponseHandler.check_status_is_500(response)
