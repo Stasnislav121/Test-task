@@ -86,3 +86,28 @@ get_item_not_found_err_schema = {
     "required": ["result", "status"]
 }
 
+add_item_err_schema = {
+    "type": "object",
+    "properties": {
+        "result": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "messages": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": ["message", "messages"]
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": ["result", "status"]
+}
+

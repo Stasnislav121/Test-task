@@ -6,7 +6,7 @@ import pytest
 class TestItemId:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[404] GET /item/:id - попытка получения данных о товаре без id')
+    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре без id')
     def test_get_item_without_id(self):
         expect_error_text = 'route /api/1/item/ not found'
         expect_item_id = ''
@@ -32,7 +32,7 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] GET /item/:id - попытка получения данных с невалидным id')
+    @allure.title('[400] GET /api/1/item/:id - попытка получения данных с невалидным id')
     @pytest.mark.parametrize('item_id', [123,
                                          'йцукен',
                                          'af0447953c55417b8039c9590bf6b239',
@@ -64,7 +64,7 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[404] GET /item/:id - попытка получения данных о товаре c несуществующим id')
+    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре c несуществующим id')
     def test_get_item_nonexistent_id(self):
         expect_item_id = 'af044795-3c55-417b-9999-c9590bf6b239'
         expect_error_text = f'item {expect_item_id} not found'
@@ -90,7 +90,7 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] GET /item/:id - попытка получения данных о товаре c превышением граничных значений id')
+    @allure.title('[400] GET /api/1/item/:id - попытка получения данных о товаре c превышением граничных значений id')
     @pytest.mark.parametrize('item_id', ['af044795-3c55-417b-9999-c9590bf6b23',
                                          'af044795-3c55-417b-9999-c9590bf6b2391'])
     def test_get_item_boundary_values_id(self, item_id):

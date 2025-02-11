@@ -5,7 +5,7 @@ import allure
 class TestItemId:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] GET /item/:id - получение данных о товаре по существующему id')
+    @allure.title('[200] GET /api/1/item/:id - получение данных о товаре по существующему id')
     def test_get_data_item_by_existing_id(self, add_item):
         item = add_item
         expect_item_data = item[1]
@@ -32,7 +32,7 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] GET /item/:id - соответствие даты-времени в параметре "createdAt" формату')
+    @allure.title('[200] GET /api/1/item/:id - соответствие даты-времени в параметре "createdAt" формату')
     def test_get_item_check_date_format(self, add_item):
         item = add_item
         expect_item_id = item[0].json()['status'].split(' - ')[1]
