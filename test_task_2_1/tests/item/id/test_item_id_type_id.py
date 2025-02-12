@@ -19,7 +19,7 @@ class TestItemId:
             ResponseHandler.check_status_is_404(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, not_found_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()
@@ -77,7 +77,7 @@ class TestItemId:
             ResponseHandler.check_status_is_404(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, not_found_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()

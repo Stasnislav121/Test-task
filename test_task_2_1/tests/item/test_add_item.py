@@ -22,7 +22,7 @@ class TestAddItem:
             ResponseHandler.validate_response(response, add_item_schema)
 
         with allure.step('Проверка параметров ответа'):
-            actual_item_id = response.json().json()['status'].split(' - ')[1]
+            actual_item_id = response.json()['status'].split(' - ')[1]
             actual_status = expect_text + actual_item_id
 
             assert expect_text in actual_status, (f'Ожидалось вхождение {expect_text} в значении параметра "status", '
@@ -58,7 +58,7 @@ class TestAddItem:
             ResponseHandler.validate_response(response, add_item_schema)
 
         with allure.step('Проверка параметров ответа'):
-            actual_item_id = response.json().json()['status'].split(' - ')[1]
+            actual_item_id = response.json()['status'].split(' - ')[1]
             actual_status = expect_text + actual_item_id
 
             assert expect_text in actual_status, (f'Ожидалось вхождение {expect_text} в значении параметра "status", '
@@ -87,7 +87,7 @@ class TestAddItem:
             ResponseHandler.validate_response(response, add_item_schema)
 
         with allure.step('Проверка параметров ответа'):
-            actual_item_id = response.json().json()['status'].split(' - ')[1]
+            actual_item_id = response.json()['status'].split(' - ')[1]
             actual_status = expect_text + actual_item_id
 
             assert expect_text in actual_status, (f'Ожидалось вхождение {expect_text} в значении параметра "status", '

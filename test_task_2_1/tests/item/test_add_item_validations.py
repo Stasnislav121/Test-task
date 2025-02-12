@@ -20,7 +20,7 @@ class TestAddItem:
             ResponseHandler.check_status_is_400(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, add_item_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()
@@ -48,7 +48,7 @@ class TestAddItem:
             ResponseHandler.check_status_is_400(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, add_item_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()
@@ -71,7 +71,7 @@ class TestAddItem:
         ('sellerId', 12.34)
     ])
     def test_add_item_with_bad_type_value_params(self, param, value):
-        expect_error_text = 'Bad request'
+        expect_error_text = 'не передан объект - объявление'
         data = copy.deepcopy(item_request)
         data[param] = value
 
@@ -108,7 +108,7 @@ class TestAddItem:
         ('sellerId', -12345)
     ])
     def test_add_item_with_invalid_values(self, param, value):
-        expect_error_text = 'Bad request'
+        expect_error_text = 'не передан объект - объявление'
         data = copy.deepcopy(item_request)
         data[param] = value
 

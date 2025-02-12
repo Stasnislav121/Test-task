@@ -28,7 +28,7 @@ class TestItemId:
 
             assert expect_item_id == actual_item_id, f'Ожидалось "id": {expect_item_id}, получено {actual_item_id}'
             assert actual_entry_datas is True, (f'Ожидалось вхождение {expect_item_data} в {actual_item_data}, '
-                                                f'получена разница {actual_entry_datas}')
+                                                f'получена разница {actual_entry_datas} по товару {expect_item_id}')
 
     @allure.feature('API')
     @allure.story('API: Item')

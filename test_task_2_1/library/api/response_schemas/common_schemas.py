@@ -1,6 +1,19 @@
 not_found_err_schema = {
     "type": "object",
     "properties": {
+        "message": {
+            "type": "string"
+        },
+        "code": {
+            "type": "integer"
+        }
+    },
+    "required": ["message", "code"]
+}
+
+bad_request_err_schema = {
+    "type": "object",
+    "properties": {
         "result": {
             "type": "object",
             "properties": {
