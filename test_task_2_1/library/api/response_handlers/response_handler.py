@@ -57,3 +57,12 @@ class ResponseHandler:
             return True
         except ValueError:
             return False
+
+    @staticmethod
+    def check_seller_id_in_data(data: list, seller_id):
+        if not data:
+            return 'Получен пустой список'
+        for el in data:
+            if el['sellerId'] != seller_id:
+                return el
+        return True
