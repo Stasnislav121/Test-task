@@ -21,7 +21,7 @@ bad_request_err_schema = {
                     "type": "string"
                 },
                 "messages": {
-                    "type": "object",
+                    "type": ["object", "null"],
                     "additionalProperties": {
                         "type": "string"
                     }
