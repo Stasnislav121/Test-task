@@ -59,7 +59,15 @@ Python версии 3.8
    ```
    pip3 install -r requirements.txt
    ```
-5. Наконец, запустите тесты, выполнив команду  
+5. Запустите тесты, выполнив команду: 
    ```
    pytest -v Avito_training\test_task_2_1
+   ```
+   Либо для запуска теста с формированием Allure-отчета: 
+   ```
+   pytest -v Avito_training\test_task_2_1 --alluredir allure-results
+   ```
+   Геренация Allure-отчета после прохождения тестов: 
+   ```
+   allure serve allure-results
    ```
