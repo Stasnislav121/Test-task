@@ -5,10 +5,10 @@ import allure
 class TestAddItem:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] POST /api/1/item - попытка создания карточки товара без обязательных параметров')
+    @allure.title('[400] POST /api/1/item - создание объявления без обязательных параметров')
     @pytest.mark.parametrize('param', ['name', 'price', 'sellerId'])
     def test_add_item_without_params(self, param):
-        expect_error_text = 'Bad request'
+        expect_error_text = 'Не передан обязательный параметр'
         data = copy.deepcopy(item_request)
         del data[param]
 
@@ -33,10 +33,10 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] POST /api/1/item - попытка создания карточки товара с пустыми значениями параметров')
+    @allure.title('[400] POST /api/1/item - создание объявления с пустыми значениями параметров')
     @pytest.mark.parametrize('param, value', [('name', ''), ('price', None), ('sellerId', None)])
     def test_add_item_with_empty_value_params(self, param, value):
-        expect_error_text = 'Bad request'
+        expect_error_text = 'Не передан обязательный параметр'
         data = copy.deepcopy(item_request)
         data[param] = value
 
@@ -61,7 +61,7 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] POST /api/1/item - попытка создания карточки товара с неверным типом данных в значениях '
+    @allure.title('[400] POST /api/1/item -создание объявления с неверным типом данных в значениях '
                   'параметров')
     @pytest.mark.parametrize('param, value', [
         ('name', 12345),
@@ -83,7 +83,7 @@ class TestAddItem:
             ResponseHandler.check_status_is_400(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, add_item_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()
@@ -96,7 +96,7 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] POST /api/1/item - попытка создания карточки товара с невалидными значениями')
+    @allure.title('[400] POST /api/1/item - создание объявления с невалидными значениями')
     @pytest.mark.parametrize('param, value', [
         ('name', '!@#$%^&*()'),
         ('name', '1234567890'),
@@ -108,7 +108,7 @@ class TestAddItem:
         ('sellerId', -12345)
     ])
     def test_add_item_with_invalid_values(self, param, value):
-        expect_error_text = 'не передан объект - объявление'
+        expect_error_text = f'Передан неверный тип данных у параметра {param}'
         data = copy.deepcopy(item_request)
         data[param] = value
 
@@ -120,7 +120,7 @@ class TestAddItem:
             ResponseHandler.check_status_is_400(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, add_item_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()
@@ -133,7 +133,7 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] POST /api/1/item - попытка создания карточки товара с превышением граничных значений')
+    @allure.title('[400] POST /api/1/item - создание объявления с превышением граничных значений')
     @pytest.mark.parametrize('param, value', [
         ('name', ''),
         ('name', 'Расположениключевыхсловпогруппамипочастотевключаетв'),
@@ -143,7 +143,7 @@ class TestAddItem:
         ('sellerId', 1000000)
     ])
     def test_add_item_with_exceeding_boundary_values(self, param, value):
-        expect_error_text = 'Bad request'
+        expect_error_text = f'Превышены допустимые значения у параметра {param}'
         data = copy.deepcopy(item_request)
         data[param] = value
 
@@ -155,7 +155,7 @@ class TestAddItem:
             ResponseHandler.check_status_is_400(response)
 
         with allure.step('Валидация схемы ответа'):
-            ResponseHandler.validate_response(response, add_item_err_schema)
+            ResponseHandler.validate_response(response, bad_request_err_schema)
 
         with allure.step('Проверка параметров ответа'):
             actual_item_data = response.json()

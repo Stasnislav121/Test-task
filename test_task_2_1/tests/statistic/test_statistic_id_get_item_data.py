@@ -5,7 +5,7 @@ import allure
 class TestStatisticId:
     @allure.feature('API')
     @allure.story('API: Statistic')
-    @allure.title('[200] GET /api/1/statistic/:id - получение статистики товара по существующему id')
+    @allure.title('[200] GET /api/1/statistic/:id - получение статистики объявления по существующему id со статистикой')
     def test_get_statistic_item_by_existing_id(self):
         item_id = 'f03efd71-323e-4836-ba64-76e9d353b003'
 

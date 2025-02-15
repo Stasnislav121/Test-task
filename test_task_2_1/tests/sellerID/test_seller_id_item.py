@@ -1,12 +1,13 @@
 from test_task_2_1.library import *
 import allure
 import pytest
+import random
 
 
 class TestSellerIdItem:
     @allure.feature('API')
     @allure.story('API: _sellerID_item')
-    @allure.title('[200] GET /api/1/:sellerID/item - получение товаров продавца')
+    @allure.title('[200] GET /api/1/:sellerID/item - получение объявлений продавца')
     def test_get_data_by_seller_id(self):
         seller_id = SELLER_ID
 
@@ -46,11 +47,14 @@ class TestSellerIdItem:
 
     @allure.feature('API')
     @allure.story('API: _sellerID_item')
-    @allure.title('[200] GET /api/1/:sellerID/item - получение товаров продавца после добавления товара')
+    @allure.title('[200] GET /api/1/:sellerID/item - получение объявлений продавца после добавления объявления')
     def test_get_data_by_seller_id_after_add_item(self):
         seller_id = SELLER_ID
-        data = copy.deepcopy(item_request)
-        data['sellerId'] = SELLER_ID
+        expect_item = {
+            'name': f'Телефон {random.randint(1, 10000)}',
+            'price': 123456,
+            'sellerId': SELLER_ID
+        }
 
         with allure.step(f'Выполнить запрос GET /api/1/{seller_id}/item'):
             client = SellerIdItemApi()
@@ -60,7 +64,7 @@ class TestSellerIdItem:
             ResponseHandler.check_status_is_200(before_seller_id_item_data)
 
         with allure.step(f'Выполнить запрос POST /api/1/item/'):
-            response_add_item = ItemApi().add_item(data=data)
+            response_add_item = ItemApi().add_item(data=expect_item)
             ResponseHandler.check_status_is_200(response_add_item)
 
         with allure.step(f'Выполнить запрос GET /api/1/{seller_id}/item'):
@@ -72,15 +76,18 @@ class TestSellerIdItem:
         with (allure.step('Проверка параметров ответа')):
             before_seller_id_item_data = before_seller_id_item_data.json()
             after_seller_id_item_data = after_seller_id_item_data.json()
+            actual_item = after_seller_id_item_data[-1]
 
             assert before_seller_id_item_data != after_seller_id_item_data, f'Данные не изменились'
             assert len(before_seller_id_item_data) < len(after_seller_id_item_data), (
                 f'Длина списка {after_seller_id_item_data} после добавления товара меньше списка'
                 f' {before_seller_id_item_data} ')
+            assert expect_item.items() <= actual_item.items(), (f'Ожидалось соответствие параметров добавленного '
+                                                                f'объявления {expect_item}, получен {actual_item}')
 
     @allure.feature('API')
     @allure.story('API: _sellerID_item')
-    @allure.title('[400] GET /api/1/:sellerID/item - получение ошибки при запросе товаров продавца с невалидным id')
+    @allure.title('[400] GET /api/1/:sellerID/item - получение ошибки при запросе объявлений продавца с невалидным id')
     @pytest.mark.parametrize('seller_id', [999999999999999999999999999,
                                            'dsfghjk',
                                            'выапролд',
