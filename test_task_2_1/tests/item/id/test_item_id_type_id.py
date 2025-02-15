@@ -6,7 +6,7 @@ import pytest
 class TestItemId:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре без id')
+    @allure.title('[404] GET /api/1/item/:id - получение данных об объявлении без id')
     def test_get_item_without_id(self):
         expect_error_text = 'route /api/1/item/ not found'
         expect_item_id = ''
@@ -32,7 +32,7 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] GET /api/1/item/:id - попытка получения данных с невалидным id')
+    @allure.title('[400] GET /api/1/item/:id - получение данных об объявлении с невалидным id')
     @pytest.mark.parametrize('item_id', [123,
                                          'йцукен',
                                          'af044795!3c55-417b-8039-c9590bf6b239',
@@ -59,11 +59,11 @@ class TestItemId:
 
             assert expect_error_text == actual_error_text, (f'Ожидалось "message": {expect_error_text}, получено'
                                                             f' {actual_error_text}')
-            assert actual_code == '400', f'Ожидался "status": "404", получено {actual_code}'
+            assert actual_code == '400', f'Ожидался "status": "400", получено {actual_code}'
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[404] GET /api/1/item/:id - попытка получения данных о товаре c несуществующим id')
+    @allure.title('[404] GET /api/1/item/:id - получение данных об объявлении c несуществующим id')
     def test_get_item_nonexistent_id(self):
         expect_item_id = 'af044795-3c55-417b-9999-c9590bf6b239'
         expect_error_text = f'item {expect_item_id} not found'
@@ -89,7 +89,8 @@ class TestItemId:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[400] GET /api/1/item/:id - попытка получения данных о товаре c превышением граничных значений id')
+    @allure.title('[400] GET /api/1/item/:id - получение данных об объявлении c превышением граничных значений длины '
+                  'id')
     @pytest.mark.parametrize('item_id', ['af044795-3c55-417b-9999-c9590bf6b23',
                                          'af044795-3c55-417b-9999-c9590bf6b2391'])
     def test_get_item_boundary_values_id(self, item_id):

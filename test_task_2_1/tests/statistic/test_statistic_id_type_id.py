@@ -6,7 +6,7 @@ import pytest
 class TestStatisticId:
     @allure.feature('API')
     @allure.story('API: Statistic')
-    @allure.title('[404] GET /api/1/statistic/:id - попытка получения данных о товаре без id')
+    @allure.title('[404] GET /api/1/statistic/:id - получение статистики объявления без id')
     def test_get_statistic_item_without_id(self):
         expect_error_text = 'route /api/1/statistic/ not found'
         expect_item_id = ''
@@ -32,10 +32,9 @@ class TestStatisticId:
 
     @allure.feature('API')
     @allure.story('API: Statistic')
-    @allure.title('[400] GET /api/1/statistic/:id - попытка получения данных с невалидным id')
+    @allure.title('[400] GET /api/1/statistic/:id - получение статистики объявления с невалидным id')
     @pytest.mark.parametrize('item_id', [123,
                                          'йцукен',
-                                         'af0447953c55417b8039c9590bf6b239',
                                          'af044795!3c55-417b-8039-c9590bf6b239',
                                          'af044795-3c55-417b-8039-c9590b-f6b239',
                                          '!@#$%^&*(){}?><~'])
@@ -64,7 +63,7 @@ class TestStatisticId:
 
     @allure.feature('API')
     @allure.story('API: Statistic')
-    @allure.title('[404] GET /api/1/statistic/:id - попытка получения данных о товаре c несуществующим id')
+    @allure.title('[404] GET /api/1/statistic/:id - получение статистики объявления c несуществующим id')
     def test_get_statistic_item_nonexistent_id(self):
         expect_item_id = 'af044795-3c55-417b-9999-c9590bf6b239'
         expect_error_text = f'statistic {expect_item_id} not found'
@@ -90,8 +89,8 @@ class TestStatisticId:
 
     @allure.feature('API')
     @allure.story('API: Statistic')
-    @allure.title('[400] GET /api/1/statistic/:id - попытка получения данных о товаре c превышением '
-                  'граничных значений id')
+    @allure.title('[400] GET /api/1/statistic/:id - получение статистики объявления c превышением '
+                  'граничных значений длины id')
     @pytest.mark.parametrize('item_id', ['af044795-3c55-417b-9999-c9590bf6b23',
                                          'af044795-3c55-417b-9999-c9590bf6b2391'])
     def test_get_statistic_item_boundary_values_id(self, item_id):

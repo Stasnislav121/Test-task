@@ -5,7 +5,7 @@ import allure
 class TestAddItem:
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] POST /api/1/item - создание карточки товара')
+    @allure.title('[200] POST /api/1/item - создание объявления')
     def test_add_item(self):
         expect_text = 'Сохранили объявление - '
         data = copy.deepcopy(item_request)
@@ -32,7 +32,7 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] POST /api/1/item - создание карточки товара (граничные значения параметров)')
+    @allure.title('[200] POST /api/1/item - создание объявления (граничные значения параметров)')
     @pytest.mark.parametrize('param, value', [
         ('sellerId', 111111),
         ('sellerId', 999999),
@@ -68,7 +68,7 @@ class TestAddItem:
 
     @allure.feature('API')
     @allure.story('API: Item')
-    @allure.title('[200] POST /api/1/item - создание карточки товара (виды имени)')
+    @allure.title('[200] POST /api/1/item - создание объявления (виды имени)')
     @pytest.mark.parametrize('value', ['Анна-Мария', 'КИРИЛЛ', 'sergey', 'MAX', 'Ёжик', 'вася', 'Aркадий', 'КоЛяН'])
     def test_add_item_any_values_name(self, value):
         expect_text = 'Сохранили объявление - '
