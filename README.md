@@ -75,10 +75,3 @@ Python версии 3.8
    allure serve allure-results
    ```
 =======
-```
-Структура проекта:
-├───test_task_1
-└───test_task_2_1
-    ├───library # пакет с базовым классом
-    └───tests # модули с тестами
-```
