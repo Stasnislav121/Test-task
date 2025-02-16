@@ -6,8 +6,7 @@
 
 
 Шаги:
-1.	Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/item/:id с id =  
-"4ed533ee-f642-4ad8-b887-d14a6ce1bd08"
+1. Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/item/:id с id = "4ed533ee-f642-4ad8-b887-d14a6ce1bd08"
 
 
 Фактический результат:
@@ -33,8 +32,7 @@
 ### 2. Не соответствует формат даты в параметре "createdAt" в методе GET /api/1/item/:id
 ```
 Шаги:
-1.	Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/item/:id с id 
-"4ed533ee-f642-4ad8-b887-d14a6ce1bd08"
+1. Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/item/:id с id = "4ed533ee-f642-4ad8-b887-d14a6ce1bd08"
 
 
 Фактический результат:
@@ -62,7 +60,7 @@
 ### 3. Отсутствует валидация на обязательность параметров при создании объявления методом POST /api/1/item
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item без параметра "name"
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item без параметра "name"
 {
     "price": 1,
     "sellerId": 3452
@@ -88,7 +86,7 @@
 ### 4. Доступно создание объявления с пустым "name" методом POST /api/1/item
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с пустым "name"
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с пустым "name"
 {
     "price": 1,
     "sellerId": 3452,
@@ -111,7 +109,7 @@
 ### 5. Доступно создание объявления с "price": null методом POST /api/1/item
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "price": null
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "price": null
 {
     "price": null,
     "sellerId": 3452,
@@ -134,7 +132,7 @@
 ### 6. Доступно создание объявления с "sellerId": null методом POST /api/1/item
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "sellerId": null
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "sellerId": null
 {
     "price": 12345,
     "sellerId": null,
@@ -157,7 +155,7 @@
 ### 7. Не соответствует текст ошибки при создании объявления методом POST /api/1/item с неверным типом данных в параметрах
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "name": 12345 (число)
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "name": 12345 (число)
 {
     "price": 12345,
     "sellerId": 345971,
@@ -181,7 +179,7 @@
 ### 8. Передается текст ошибки в параметре "status" при создании объявления методом POST /api/1/item с неверным типом данных
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "name": 12345 (число)
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "name": 12345 (число)
 {
     "price": 12345,
     "sellerId": 345971,
@@ -215,7 +213,7 @@
 ### 9. Отсутствует валидация переданных значений параметров при создании объявления методом POST /api/1/item 
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с невалидным значением "name" (не буквы):
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с невалидным значением "name" (не буквы):
 Например,
 {
     "name": "!@#$%^&*()",
@@ -252,7 +250,7 @@
 ### 10. Отсутствует валидация на граничные значения параметров при создании объявления методом POST /api/1/item
 ```
 Шаги:
-1.	Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "sellerId": 111110:
+1. Выполнить POST-запрос по адресу https://qa-internship.avito.com/api/1/item с "sellerId": 111110:
 Например,
 {
     "name": "Телефон",
@@ -286,9 +284,7 @@
 ### 11. Перепутаны значения параметров "id" и "name" в ответе запроса получения объявлений продавца методом GET /api/1/:sellerID/item
 ```
 Шаги:
-1.	Получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.
-com/api/1/:sellerID/item с "sellerID": 345971
-(например, 345971)
+1. Получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.com/api/1/:sellerID/item с "sellerID": 345971 (например, 345971)
 
 
 Фактический результат:
@@ -307,17 +303,14 @@ com/api/1/:sellerID/item с "sellerID": 345971
 ### 12. Не соответствует значение "name" в ответе запроса получения объявлений продавца методом GET /api/1/:sellerID/item у добавленного объявления
 ```
 Шаги:
-1.	Получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.
-com/api/1/:sellerID/item с "sellerID": 345971
-(например, 345971)
+1. Получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.com/api/1/:sellerID/item с "sellerID": 345971 (например, 345971)
 2. Добавить объявление продавцу, выполнив POST-запрос по адресу https://qa-internship.avito.com/api/1/item 
 {
     "name": "Телефон",
     "price": 85566,
     "sellerId": 345971 
 }
-3. Повторно получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.
-com/api/1/:sellerID/item с "sellerID": 345971
+3. Повторно получить список объявлений продавца, выполнив GET-запрос по адресу https://qa-internship.avito.com/api/1/:sellerID/item с "sellerID": 345971
 4. Сравнить ответы метода GET /:sellerID/item до и после добавления объявления
 
 
@@ -333,7 +326,7 @@ com/api/1/:sellerID/item с "sellerID": 345971
 ### 13. Не соответствует текст ответа и код в теле ответа запроса получения объявлений продавца методом GET /api/1/:sellerID/item
 ```
 Шаги:
-1.	Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/:sellerID/item с "sellerID": !@#$%^&*()_+{}|?><,.
+1. Выполнить GET-запрос по адресу https://qa-internship.avito.com/api/1/:sellerID/item с "sellerID": !@#$%^&*()_+{}|?><,.
 
 
 Фактический результат:
