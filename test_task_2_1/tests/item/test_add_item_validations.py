@@ -71,7 +71,7 @@ class TestAddItem:
         ('sellerId', 12.34)
     ])
     def test_add_item_with_bad_type_value_params(self, param, value):
-        expect_error_text = 'не передан объект - объявление'
+        expect_error_text = f'Передан неверный тип данных у параметра {param}'
         data = copy.deepcopy(item_request)
         data[param] = value
 

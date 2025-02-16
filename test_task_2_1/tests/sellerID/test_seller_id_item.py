@@ -26,11 +26,11 @@ class TestSellerIdItem:
             seller_is_owner_items = ResponseHandler.check_seller_id_in_data(data=actual_seller_id_item_data,
                                                                             seller_id=seller_id)
 
-            assert seller_is_owner_items is True, f'Товар {seller_is_owner_items} не принадлежит продавцу'
+            assert seller_is_owner_items is True, f'Объявление {seller_is_owner_items} не принадлежит продавцу'
 
     @allure.feature('API')
     @allure.story('API: _sellerID_item')
-    @allure.title('[200] GET /api/1/:sellerID/item - получение товаров продавца c отсутствующими товарами')
+    @allure.title('[200] GET /api/1/:sellerID/item - получение объявлений продавца c отсутствующими объявлениями')
     def test_get_data_by_seller_id_has_not_item(self):
         seller_id = 86764543
 
@@ -80,7 +80,7 @@ class TestSellerIdItem:
 
             assert before_seller_id_item_data != after_seller_id_item_data, f'Данные не изменились'
             assert len(before_seller_id_item_data) < len(after_seller_id_item_data), (
-                f'Длина списка {after_seller_id_item_data} после добавления товара меньше списка'
+                f'Длина списка {after_seller_id_item_data} после добавления объявления меньше списка'
                 f' {before_seller_id_item_data} ')
             assert expect_item.items() <= actual_item.items(), (f'Ожидалось соответствие параметров добавленного '
                                                                 f'объявления {expect_item}, получен {actual_item}')
