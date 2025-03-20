@@ -1,4 +1,3 @@
-"# QA-trainee-assignment-winter-2025_Avdokushin" 
 # Структура проекта:
 ```
 ├─── test_task_1                                  # папка с первым заданием
