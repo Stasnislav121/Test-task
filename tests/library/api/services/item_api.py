@@ -1,4 +1,4 @@
-from test_task_2_1.library.api.base_api_client import BaseApiClient
+from tests.library.api.base_api_client import BaseApiClient
 
 
 class ItemApi(BaseApiClient):

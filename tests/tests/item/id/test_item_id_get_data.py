@@ -1,4 +1,4 @@
-from test_task_2_1.library import *
+from tests.library import *
 import allure
 
 

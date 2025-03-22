@@ -1,7 +1,7 @@
 import pytest
 import copy
 
-from test_task_2_1.library import *
+from tests.library import *
 
 
 @pytest.fixture

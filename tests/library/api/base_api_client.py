@@ -2,7 +2,7 @@ import requests
 
 
 class BaseApiClient:
-    base_address = 'https://qa-internship.avito.com/api/1/'
+    #base_address = 'https://.com/api/1/' Базовый URL
     headers = {
         "Content-Type": "application/json"
     }
